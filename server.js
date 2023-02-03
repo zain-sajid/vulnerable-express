@@ -27,11 +27,11 @@ app.get('/users', (req, res) => {
   });
 });
 
-const payload = '"" UNION SELECT SLEEP(10)';
+const payload = "'zain' UNION SELECT SLEEP(10)";
 
 app.get('/sqli', (req, res) => {
   connection.query(
-    `SELECT * FROM users WHERE name = ${payload}`,
+    `SELECT name FROM users WHERE name = ${payload}`,
     (err, rows, fields) => {
       console.log(err);
       console.log('The solution is: ', rows);
